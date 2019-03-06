@@ -24,13 +24,7 @@ class Stack<T> {
         return this.items.toString();
     }
 
-    // hashcode():number {
-    //     const str:string = this.toString();
-    //     return Array.from(str)
-    //         .reduce((s, c) => Math.imul(31, s) + c.charCodeAt(0) | 0, 0)
-    // }
-
-    equals(obj: T[]): boolean {
+     equals(obj: T[]): boolean {
         return obj.toString() === this.items.toString();
 
     }
