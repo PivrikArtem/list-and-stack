@@ -26,20 +26,8 @@ class Stack<T> {
 
      equals(obj: T[]): boolean {
         return obj.toString() === this.items.toString();
-
     }
-
 }
 
-let stackNumber = new Stack < Primitive >();
-stackNumber.push(1);
-stackNumber.push(2);
-stackNumber.push(3);
-stackNumber.push(3);
-stackNumber.push('r');
-
-let a:boolean=stackNumber.equals(['e',2,3]);
-let b:string=stackNumber.toString();
-console.log(b);
 
 
