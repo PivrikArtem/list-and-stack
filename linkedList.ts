@@ -1,62 +1,17 @@
-// type Primitive =string|number|null|boolean|undefined
-// class Stack<T> {
-//     items: T[];
-//
-//     constructor() {
-//         this.items = [];
-//     }
-//
-//     push(element: T): void {
-//         this.items.push(element);
-//     }
-//
-//     pop(): void | string {
-//         if (this.items.length == 0) {
-//             return "empty stack";
-//         } else this.items.pop();
-//     }
-//
-//     size():number {
-//         return this.items.length;
-//     }
-//
-//     toString(): string {
-//         return this.items.toString();
-//     }
-//
-//     equals(obj: T[]): boolean {
-//         return obj.toString() === this.items.toString();
-//
-//     }
-//
-// }
-//
-// let stackNumber = new Stack < Primitive >();
-// stackNumber.push(1);
-// stackNumber.push(2);
-// stackNumber.push(3);
-// stackNumber.push(3);
-// stackNumber.push('r');
-//
-// let a:boolean=stackNumber.equals(['e',2,3]);
-// let b:string=stackNumber.toString();
-// console.log(b);
-
-
-//add(T, int index), remove(index), get(int index), size, equals, toString
 type Primitive = string | number | null | boolean | undefined
 
-class R<TData> {
-    value:TData;
-    next:R<TData>
-    constructor(value:TData){
-        this.value=value;
-        this.next=new R<TData>(value);
-    }
-   }
+class N<TData> {
+    value: TData;
+    next: N<TData>
 
-   class LinkedList<T> {
-    private head: R<T>;
+    constructor(value: TData) {
+        this.value = value;
+        this.next = null;
+    }
+}
+
+class LinkedList<T> {
+    private head: N<T>;
     private length: number;
 
     constructor(value: T) {
@@ -66,27 +21,26 @@ class R<TData> {
     }
 
     addToHead(value: T) {
-        let newNode: R<T>=new R<T>(value);
+        let newNode: N<T> = new N<T>(value);
         newNode.next = this.head;
         this.head = newNode;
         this.length++;
         return this;
     }
 
-    // toString():string {
-    //     let endValue = this.head.value;
-    //     let nextObj = this.head.next;
-    //     function _recursiveValue():string {
-    //         if (nextObj) {
-    //             var { value, next} = nextObj;
-    //             nextObj = next;
-    //             value= value.toString() + _recursiveValue();
-    //         }
-    //         return value;
-    //     }
-    //     let stringValue = endValue + _recursiveValue();
-    //     return stringValue.slice(0, length - 9);
-    // }
+    toString(): string {
+        if (!this.head) {
+            return 'is Empty';
+        }
+        let result = '';
+        let node = this.head;
+        while (node.next != null) {
+            result += node.value + ', ';
+            node = node.next;
+        }
+        result += node.value;
+        return 'list of: ' + result;
+    }
 
 
     private _removeFromHead() {
@@ -149,12 +103,21 @@ class R<TData> {
         return this;
     }
 
+    equals(obj: LinkedList<T>): boolean {
+        if (this.length !== obj.length) {
+            return false;
+        }
+
+        let firstList = this.head;
+        let secondList = obj.head;
+
+        while (firstList !== null) {
+            if (firstList.value !== secondList.value) {
+                return false;
+            }
+            firstList = firstList.next;
+            secondList = secondList.next;
+        }
+        return true;
+    }
 }
-
-const list = new LinkedList('first');
-list.addToHead('second');
-list.addToHead('third');
-// list.remove('second');
-const s = list.get('second');
-
-console.log(s);
