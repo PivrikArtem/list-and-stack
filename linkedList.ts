@@ -44,11 +44,21 @@
 
 
 //add(T, int index), remove(index), get(int index), size, equals, toString
-class LinkedList<T> {
-    private head: { [key: string]: T };
+type Primitive = string | number | null | boolean | undefined
+
+class R<TData> {
+    value:TData;
+    next:R<TData>
+    constructor(value:TData){
+        this.value=value;
+        this.next=new R<TData>(value);
+    }
+   }
+
+   class LinkedList<T> {
+    private head: R<T>;
     private length: number;
 
-// newNode:{[key:string] : T}
     constructor(value: T) {
         this.head = null;
         this.length = 0;
@@ -56,23 +66,30 @@ class LinkedList<T> {
     }
 
     addToHead(value: T) {
-        let next: { [key: string]: T };
-        let newNode = {value,next};
+        let newNode: R<T>=new R<T>(value);
         newNode.next = this.head;
         this.head = newNode;
         this.length++;
         return this;
     }
 
-    toString():string {
-        let returnValue = String(this.head);
-        if (this.get().next) {
-            returnValue = returnValue + "-> " + String(this.next);
-        }
-        return returnValue;
-    }
+    // toString():string {
+    //     let endValue = this.head.value;
+    //     let nextObj = this.head.next;
+    //     function _recursiveValue():string {
+    //         if (nextObj) {
+    //             var { value, next} = nextObj;
+    //             nextObj = next;
+    //             value= value.toString() + _recursiveValue();
+    //         }
+    //         return value;
+    //     }
+    //     let stringValue = endValue + _recursiveValue();
+    //     return stringValue.slice(0, length - 9);
+    // }
 
-   private _removeFromHead() {
+
+    private _removeFromHead() {
         if (this.length === 0) {
             return undefined;
         }
