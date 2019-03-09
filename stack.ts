@@ -28,15 +28,3 @@
         return obj.toString() === this.items.toString();
     }
 }
-
-//
-//
-// var stackNumber = new Stack();
-// stackNumber.push(1);
-// stackNumber.push(2);
-// stackNumber.push(3);
-// stackNumber.push(3);
-// stackNumber.push('r');
-// var a = stackNumber.equals(['e', 2, 3]);
-// var b = stackNumber.toString();
-// console.log(b);
