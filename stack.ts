@@ -1,5 +1,5 @@
-type Primitive =string|number|null|boolean|undefined
-class Stack<T> {
+
+ export class Stack<T> {
     items: T[];
 
     constructor() {
@@ -29,5 +29,14 @@ class Stack<T> {
     }
 }
 
-
-
+//
+//
+// var stackNumber = new Stack();
+// stackNumber.push(1);
+// stackNumber.push(2);
+// stackNumber.push(3);
+// stackNumber.push(3);
+// stackNumber.push('r');
+// var a = stackNumber.equals(['e', 2, 3]);
+// var b = stackNumber.toString();
+// console.log(b);
