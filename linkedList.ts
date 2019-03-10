@@ -1,5 +1,3 @@
-type Primitive = string | number | null | boolean | undefined
-
 class N<TData> {
     value: TData;
     next: N<TData>
@@ -10,7 +8,7 @@ class N<TData> {
     }
 }
 
-class LinkedList<T> {
+export class LinkedList<T> {
     private head: N<T>;
     private length: number;
 
@@ -30,7 +28,7 @@ class LinkedList<T> {
 
     toString(): string {
         if (!this.head) {
-            return 'is Empty';
+            return 'list is empty';
         }
         let result = '';
         let node = this.head;
@@ -44,9 +42,6 @@ class LinkedList<T> {
 
 
     private _removeFromHead() {
-        if (this.length === 0) {
-            return undefined;
-        }
 
         const value = this.head.value;
         this.head = this.head.next;
@@ -70,12 +65,12 @@ class LinkedList<T> {
             thisNode = thisNode.next;
         }
 
-        return thisNode;
+        return 'list do not have this element';
     }
 
     remove(val) {
         if (this.length === 0) {
-            return undefined;
+            return 'list is empty';
         }
 
         if (this.head.value === val) {
